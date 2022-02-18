@@ -1,0 +1,59 @@
+安裝套件
+```
+!pip install requests
+!pip install BeautifulSoup4
+```
+匯入套件並取得網站HTML
+```
+import requests
+from bs4 import BeautifulSoup
+url = "https://www.books.com.tw/web/sys_tdrntb/books/"
+res = requests.get(url)
+soup = BeautifulSoup(res.text,"html.parser")
+```
+爬取資料
+```
+ranking = soup.findAll('strong',{'class':'no'})
+ranking_list = []
+for r in ranking:
+  ranking_list.append(r.text.strip())
+#print(ranking_list)
+
+table = soup.findAll('div',{'class':'type02_bd-a'})
+name_list = []
+author_list = []
+discount_list = []
+price_list = []
+link_list = []
+
+for t in table:
+  name_list.append(t.findAll('a')[0].text.strip())
+  author_list.append(t.findAll('a')[1].text.strip())
+  discount_list.append(t.findAll('strong')[0].text.strip())
+  price_list.append(t.findAll('strong')[-1].text.strip())
+  link_list.append(t.find('a').get('href').strip())
+
+#print(name_list)
+#print(author_list)
+#print(discount_list)
+#print(price_list)
+#print(link_list)
+```
+將所有資料整理成一個LIST
+```
+final_list = []
+for x in range(len(ranking_list)):
+  final_list.append(
+      {'名次':ranking_list[x],
+       '書名':name_list[x],
+       '作者':author_list[x],
+       '折數':discount_list[x],
+       '優惠價':price_list[x],
+       '書本連結':link_list[x]} )
+```
+將LIST轉成DATAFRAME
+```
+import pandas as pd
+df = pd.DataFrame(final_list)
+df
+```
