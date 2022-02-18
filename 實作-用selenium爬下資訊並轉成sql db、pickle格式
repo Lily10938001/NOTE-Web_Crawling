@@ -49,6 +49,12 @@ df.to_sql('English_Title',con=engine,if_exists='append',index=False)
 engine.execute("SELECT * FROM English_Title").fetchall()
 -----------------------------------------------------------------------------------------------
 '''''取得英文標題並存成pickle形式'''''
+說明:
+-pickle儲存方式類似json
+-不同的是pickle僅限於python使用,並且支援python內的相關功能(ex:能認得已使用過的變數、函數、class等)
+-常用: pickle.dump()、pickle.load()
+-寫入或讀取文檔時,寫入方式是byte,所以要用"wb"或"rb"
+
 # 匯入pickle模組
 import pickle
 
