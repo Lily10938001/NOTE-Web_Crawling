@@ -23,12 +23,12 @@ soup = BeautifulSoup(driver.page_source, 'html.parser')
 # 記得關掉瀏覽器
 driver.close()
 ---------------------------------------------------------------------------------------------
-'''''取得英文標題並存成database形式'''''
+'''''取得英文標題並存進SQLite(本地端)'''''
 # 匯入需要的模組
 from sqlalchemy import create_engine
 import pandas as pd
 
-# 準備引擎供執行資料庫時使用
+# 準備引擎供操作資料庫時使用
 engine = create_engine('sqlite://',echo=False)
 
 # 取得英文標題並建立成DataFrame
@@ -38,12 +38,30 @@ for title in title_soup:
 df = pd.DataFrame(title_soup_list)
 
 # 將DataFrame轉換成資料庫格式,TABLE名為English_Title
-df.to_sql('English_Title',con=engine,if_exists='append',index=False)
+df.to_sql('english_title',con=engine,if_exists='append',index=False)
 
 # 查詢看看
-engine.execute("SELECT * FROM English_Title").fetchall()
+engine.execute("SELECT * FROM english_title").fetchall()
 ## 方法二: pd.read_sql_query('SELECT * FROM English_Title', con=engine)
 ## 方法三: pd.read_sql_table('English_Title', con=engine)
+---------------------------------------------------------------------------------------------
+'''''取得英文標題並串入MySQL(遠端)'''''
+# 安裝mysql相關套件
+!pip install mysqlclient
+
+# 匯入需要的模組
+from sqlalchemy import create_engine
+import MySQLdb
+import pandas as pd
+
+# 準備引擎供操作資料庫時使用
+engine = create_engine('mysql://{user}:{pwd}@{host}:{port}/{db_name}?charset=utf8'.format(
+        user='root',
+        pwd='******',
+        host='127.0.0.1',
+        port='3306',
+        db_name='newschema'),
+        encoding='utf-8')
 -----------------------------------------------------------------------------------------------
 '''''取得英文標題並存成pickle形式'''''
 說明:
