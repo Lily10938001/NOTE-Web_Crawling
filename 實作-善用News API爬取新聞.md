@@ -20,9 +20,13 @@ newsapi = NewsApiClient(api_key='e239b230daa04045b4ef6ebd7bea720f')
 ```
 
 第一種方式: 以everything的方式查找所有文章內容(可參考網站"Documentation"的部分)
+
 (標題或報導內容一定要有"武漢肺炎"四個字,且一定不能出現"外遇"兩個字
+
 來源來自:ETtoday,風傳媒,中國時報,聯合新聞網
+
 依發布日期由新到舊排序
+
 一頁呈現100篇報導)
 ```
 all_articles = newsapi.get_everything(q='"武漢肺炎"NOT"外遇"',                
