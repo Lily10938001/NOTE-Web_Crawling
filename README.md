@@ -1,5 +1,5 @@
 # Web-Crawling (others)
-some practices for web crawling during the course
+這裡存放一些學習時的實作及筆記
 
 包含:
 1. 以GET方式爬取一般網頁(PTT)、動態網頁(Dcard)、含cookies的網頁(PTT八卦版)
