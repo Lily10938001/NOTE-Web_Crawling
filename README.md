@@ -8,3 +8,4 @@ some practices for web crawling during the course
 4. 使用Selenium爬取含cookies的網頁(PTT八卦版)、動態網頁(Dcard)
 5. 用jieba對爬下來的文章做斷詞分析(ptt八卦版)
 6. 將爬下來的文章萃取特徵,轉成dataframe分析(ptt八卦版-推/噓)
+7. 善用News API爬取新聞
