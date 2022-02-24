@@ -1,14 +1,18 @@
+```
 ## 安裝selenium相關套件
+
 !pip install selenium
 !apt-get update
 !apt install chromium-chromedriver
 
 ## 匯入爬蟲需用的模組
+
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import time
 
 ## 驅動程式前的相關設定
+
 chrome_options = webdriver.ChromeOptions() 
 chrome_options.add_argument('--headless') 
 chrome_options.add_argument('--no-sandbox')
@@ -85,3 +89,4 @@ with open('exam_3.pickle','wb') as f2:
 with open('exam_3.pickle','rb') as f3:
   P = pickle.load(f3)
   print(P)
+```
